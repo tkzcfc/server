@@ -1,0 +1,7 @@
+
+.vs/server/v14/.suo
+*.obj
+Debug/server.exe
+*.ilk
+*.pdb
+*.idb

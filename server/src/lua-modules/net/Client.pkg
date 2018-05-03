@@ -1,0 +1,48 @@
+$#include "TCPServer.h"
+
+class TCPServer
+{
+	//服务器所处阶段
+	enum ServerStage
+	{
+		listen,//监听
+		shall_disconnect,//即将断开
+		shall_deleteSocket,//即将销毁socket
+		shall_exit,//即将退出
+		exit//退出
+	};
+
+	static Client* getInstance();
+
+	static void destroy();
+
+	void setCallFunc(LuaFunction handle);
+
+	bool connect(const char* ip, int port, unsigned int key);
+
+	void disconnect(unsigned int key);
+
+	void closeClient();
+	
+	bool isCloseFinish();
+
+	bool send(unsigned int key, char* data, unsigned int len);
+
+	bool send(unsigned int key, char* data);
+
+	bool setNoDelay(bool enable);
+	
+	bool setKeepAlive(int enable, unsigned int delay);
+
+	TCPClient::CONNECTSTATE checkState(unsigned int key);
+
+	TCPClient::CONNECTSTATE checkState(const char* ip, unsigned int port);
+	
+	void setAutoReconnect(bool isAuto);
+	
+	void setAutoReconnectTime(float time);
+	
+	void setAutoReconnectByKey(unsigned int key, bool isAuto);
+	
+	void setAutoReconnectTimeByKey(unsigned int key, float time);
+};
