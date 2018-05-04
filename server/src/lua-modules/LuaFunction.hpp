@@ -66,10 +66,7 @@ public:
         pusharg(first);
         pusharg(args...);
     }
-	void pushusertype(void* v, const char* type)
-	{
-		tolua_pushusertype(L, (void*)v, type);
-	}
+	void pushusertype(void* v, const char* type);
 private:
     mutable int trackback_;
 };

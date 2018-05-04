@@ -1,4 +1,4 @@
-﻿//tolua++ -L basic.lua -o lua_dubase.cpp dubase.pkg
+//tolua++ -L basic.lua -o lua_dubase.cpp dubase.pkg
 
 
 $#include "DUObject.h"

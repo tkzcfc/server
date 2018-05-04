@@ -29,7 +29,7 @@ DUObject::DUObject()
 
 DUObject::~DUObject()
 {
-    DUScheduler::GetInstance()->UnScheduleByObject(this);
+    DUScheduler::getInstance()->unScheduleByObject(this);
     __objectCount--;
     //DU_LOG("~object count is %d\n", __objectCount);
 }
@@ -51,5 +51,5 @@ void DUObject::release()
 
 void DUObject::printCount()
 {
-    DU_LOG("count is %d\n", m_count);
+    DU_LOG("[%p]count is %d\n", this, m_count);
 }

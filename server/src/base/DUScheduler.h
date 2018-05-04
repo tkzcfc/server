@@ -26,7 +26,7 @@ class DUScheduler : public DUObject
     DUScheduler();
 public:
     
-    static DUScheduler* GetInstance();
+    static DUScheduler* getInstance();
     
     ~DUScheduler();
     
@@ -93,7 +93,7 @@ protected:
     struct HashSchedulerUpdateEntry* m_currentRunEntry;
     struct HashSchedulerUpdateEntry* m_operationEntry;
     
-    std::mutex m_Mutex;
+    //std::mutex m_mutex;
 };
 
 #endif /* DUScheduler_hpp */

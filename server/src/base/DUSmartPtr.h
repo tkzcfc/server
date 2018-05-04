@@ -27,7 +27,7 @@ public:
         m_ptr = ptr;
         if(m_ptr)
         {
-            m_ptr->Retain();
+            m_ptr->retain();
         }
     }
     
@@ -36,7 +36,7 @@ public:
         m_ptr = other.m_ptr;
         if(m_ptr)
         {
-            m_ptr->Retain();
+            m_ptr->retain();
         }
     }
     
@@ -44,7 +44,7 @@ public:
     {
         if(m_ptr)
         {
-            m_ptr->Release();
+            m_ptr->release();
             m_ptr = NULL;
         }
     }
@@ -63,13 +63,13 @@ public:
     {
         if(m_ptr)
         {
-            m_ptr->Release();
+            m_ptr->release();
             m_ptr = NULL;
         }
         m_ptr = other.m_ptr;
         if(m_ptr)
         {
-            m_ptr->Retain();
+            m_ptr->retain();
         }
         return *this;
     }
@@ -78,13 +78,13 @@ public:
     {
         if(m_ptr)
         {
-            m_ptr->Release();
+            m_ptr->release();
             m_ptr = NULL;
         }
         m_ptr = other;
         if(m_ptr)
         {
-            m_ptr->Retain();
+            m_ptr->retain();
         }
         return *this;
     }

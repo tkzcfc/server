@@ -11,7 +11,7 @@ DUGame::DUGame()
 
 	m_animationInterval.QuadPart = 0;
 	setInterval(1 / 40.0f);
-	m_scheduler = DUScheduler::GetInstance();
+	m_scheduler = DUScheduler::getInstance();
 }
 
 DUGame::~DUGame()
@@ -68,7 +68,7 @@ void DUGame::run()
 void DUGame::mainLoop()
 {
 	calculateDeltaTime();
-	m_scheduler->Update(m_deltaTime);
+	m_scheduler->update(m_deltaTime);
 }
 
 void DUGame::calculateDeltaTime()

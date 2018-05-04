@@ -1,6 +1,6 @@
-﻿/*
+/*
 ** Lua binding: dubase
-** Generated automatically by tolua++-1.0.92 on 05/04/18 12:12:50.
+** Generated automatically by tolua++-1.0.92 on 05/04/18 16:31:43.
 */
 
 #include "tolua_fix.h"
@@ -129,9 +129,9 @@ static int tolua_dubase_DUObject_delete00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: Retain of class  DUObject */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUObject_Retain00
-static int tolua_dubase_DUObject_Retain00(lua_State* tolua_S)
+/* method: retain of class  DUObject */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUObject_retain00
+static int tolua_dubase_DUObject_retain00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -145,25 +145,25 @@ static int tolua_dubase_DUObject_Retain00(lua_State* tolua_S)
  {
   DUObject* self = (DUObject*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Retain'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'retain'", NULL);
 #endif
   {
-   DUObject* tolua_ret = (DUObject*)  self->Retain();
+   DUObject* tolua_ret = (DUObject*)  self->retain();
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"DUObject");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'Retain'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'retain'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: Release of class  DUObject */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUObject_Release00
-static int tolua_dubase_DUObject_Release00(lua_State* tolua_S)
+/* method: release of class  DUObject */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUObject_release00
+static int tolua_dubase_DUObject_release00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -177,24 +177,24 @@ static int tolua_dubase_DUObject_Release00(lua_State* tolua_S)
  {
   DUObject* self = (DUObject*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Release'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'release'", NULL);
 #endif
   {
-   self->Release();
+   self->release();
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'Release'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'release'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: PrintCount of class  DUObject */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUObject_PrintCount00
-static int tolua_dubase_DUObject_PrintCount00(lua_State* tolua_S)
+/* method: printCount of class  DUObject */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUObject_printCount00
+static int tolua_dubase_DUObject_printCount00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -208,24 +208,24 @@ static int tolua_dubase_DUObject_PrintCount00(lua_State* tolua_S)
  {
   DUObject* self = (DUObject*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PrintCount'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'printCount'", NULL);
 #endif
   {
-   self->PrintCount();
+   self->printCount();
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'PrintCount'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'printCount'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: GetInstance of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_GetInstance00
-static int tolua_dubase_DUScheduler_GetInstance00(lua_State* tolua_S)
+/* method: getInstance of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_getInstance00
+static int tolua_dubase_DUScheduler_getInstance00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -238,22 +238,22 @@ static int tolua_dubase_DUScheduler_GetInstance00(lua_State* tolua_S)
 #endif
  {
   {
-   DUScheduler* tolua_ret = (DUScheduler*)  DUScheduler::GetInstance();
+   DUScheduler* tolua_ret = (DUScheduler*)  DUScheduler::getInstance();
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"DUScheduler");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetInstance'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getInstance'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: PauseSchedule of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_PauseSchedule00
-static int tolua_dubase_DUScheduler_PauseSchedule00(lua_State* tolua_S)
+/* method: pauseSchedule of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_pauseSchedule00
+static int tolua_dubase_DUScheduler_pauseSchedule00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -269,24 +269,24 @@ static int tolua_dubase_DUScheduler_PauseSchedule00(lua_State* tolua_S)
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
   DUObject* pTarget = ((DUObject*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PauseSchedule'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'pauseSchedule'", NULL);
 #endif
   {
-   self->PauseSchedule(pTarget);
+   self->pauseSchedule(pTarget);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'PauseSchedule'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'pauseSchedule'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: PauseSchedule of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_PauseSchedule01
-static int tolua_dubase_DUScheduler_PauseSchedule01(lua_State* tolua_S)
+/* method: pauseSchedule of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_pauseSchedule01
+static int tolua_dubase_DUScheduler_pauseSchedule01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -302,22 +302,22 @@ static int tolua_dubase_DUScheduler_PauseSchedule01(lua_State* tolua_S)
   void* pTarget = ((void*)  tolua_touserdata(tolua_S,2,0));
   const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PauseSchedule'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'pauseSchedule'", NULL);
 #endif
   {
-   self->PauseSchedule(pTarget,key);
+   self->pauseSchedule(pTarget,key);
    tolua_pushcppstring(tolua_S,(const char*)key);
   }
  }
  return 1;
 tolua_lerror:
- return tolua_dubase_DUScheduler_PauseSchedule00(tolua_S);
+ return tolua_dubase_DUScheduler_pauseSchedule00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: PauseSchedule of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_PauseSchedule02
-static int tolua_dubase_DUScheduler_PauseSchedule02(lua_State* tolua_S)
+/* method: pauseSchedule of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_pauseSchedule02
+static int tolua_dubase_DUScheduler_pauseSchedule02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -331,22 +331,22 @@ static int tolua_dubase_DUScheduler_PauseSchedule02(lua_State* tolua_S)
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
   const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PauseSchedule'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'pauseSchedule'", NULL);
 #endif
   {
-   self->PauseSchedule(key);
+   self->pauseSchedule(key);
    tolua_pushcppstring(tolua_S,(const char*)key);
   }
  }
  return 1;
 tolua_lerror:
- return tolua_dubase_DUScheduler_PauseSchedule01(tolua_S);
+ return tolua_dubase_DUScheduler_pauseSchedule01(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: ResumeSchedule of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_ResumeSchedule00
-static int tolua_dubase_DUScheduler_ResumeSchedule00(lua_State* tolua_S)
+/* method: resumeSchedule of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_resumeSchedule00
+static int tolua_dubase_DUScheduler_resumeSchedule00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -362,24 +362,24 @@ static int tolua_dubase_DUScheduler_ResumeSchedule00(lua_State* tolua_S)
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
   DUObject* pTarget = ((DUObject*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ResumeSchedule'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'resumeSchedule'", NULL);
 #endif
   {
-   self->ResumeSchedule(pTarget);
+   self->resumeSchedule(pTarget);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'ResumeSchedule'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'resumeSchedule'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: ResumeSchedule of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_ResumeSchedule01
-static int tolua_dubase_DUScheduler_ResumeSchedule01(lua_State* tolua_S)
+/* method: resumeSchedule of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_resumeSchedule01
+static int tolua_dubase_DUScheduler_resumeSchedule01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -395,22 +395,22 @@ static int tolua_dubase_DUScheduler_ResumeSchedule01(lua_State* tolua_S)
   void* pTarget = ((void*)  tolua_touserdata(tolua_S,2,0));
   const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ResumeSchedule'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'resumeSchedule'", NULL);
 #endif
   {
-   self->ResumeSchedule(pTarget,key);
+   self->resumeSchedule(pTarget,key);
    tolua_pushcppstring(tolua_S,(const char*)key);
   }
  }
  return 1;
 tolua_lerror:
- return tolua_dubase_DUScheduler_ResumeSchedule00(tolua_S);
+ return tolua_dubase_DUScheduler_resumeSchedule00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: ResumeSchedule of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_ResumeSchedule02
-static int tolua_dubase_DUScheduler_ResumeSchedule02(lua_State* tolua_S)
+/* method: resumeSchedule of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_resumeSchedule02
+static int tolua_dubase_DUScheduler_resumeSchedule02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -424,22 +424,22 @@ static int tolua_dubase_DUScheduler_ResumeSchedule02(lua_State* tolua_S)
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
   const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ResumeSchedule'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'resumeSchedule'", NULL);
 #endif
   {
-   self->ResumeSchedule(key);
+   self->resumeSchedule(key);
    tolua_pushcppstring(tolua_S,(const char*)key);
   }
  }
  return 1;
 tolua_lerror:
- return tolua_dubase_DUScheduler_ResumeSchedule01(tolua_S);
+ return tolua_dubase_DUScheduler_resumeSchedule01(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: UnScheduleByObject of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_UnScheduleByObject00
-static int tolua_dubase_DUScheduler_UnScheduleByObject00(lua_State* tolua_S)
+/* method: unScheduleByObject of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_unScheduleByObject00
+static int tolua_dubase_DUScheduler_unScheduleByObject00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -455,24 +455,24 @@ static int tolua_dubase_DUScheduler_UnScheduleByObject00(lua_State* tolua_S)
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
   DUObject* pTarget = ((DUObject*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'UnScheduleByObject'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unScheduleByObject'", NULL);
 #endif
   {
-   self->UnScheduleByObject(pTarget);
+   self->unScheduleByObject(pTarget);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'UnScheduleByObject'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'unScheduleByObject'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: UnScheduleSeletorByKey of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_UnScheduleSeletorByKey00
-static int tolua_dubase_DUScheduler_UnScheduleSeletorByKey00(lua_State* tolua_S)
+/* method: unScheduleSeletorByKey of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_unScheduleSeletorByKey00
+static int tolua_dubase_DUScheduler_unScheduleSeletorByKey00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -490,25 +490,25 @@ static int tolua_dubase_DUScheduler_UnScheduleSeletorByKey00(lua_State* tolua_S)
   void* pTarget = ((void*)  tolua_touserdata(tolua_S,2,0));
   const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'UnScheduleSeletorByKey'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unScheduleSeletorByKey'", NULL);
 #endif
   {
-   self->UnScheduleSeletorByKey(pTarget,key);
+   self->unScheduleSeletorByKey(pTarget,key);
    tolua_pushcppstring(tolua_S,(const char*)key);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'UnScheduleSeletorByKey'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'unScheduleSeletorByKey'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: UnScheduleSeletorByKey of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_UnScheduleSeletorByKey01
-static int tolua_dubase_DUScheduler_UnScheduleSeletorByKey01(lua_State* tolua_S)
+/* method: unScheduleSeletorByKey of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_unScheduleSeletorByKey01
+static int tolua_dubase_DUScheduler_unScheduleSeletorByKey01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -522,22 +522,22 @@ static int tolua_dubase_DUScheduler_UnScheduleSeletorByKey01(lua_State* tolua_S)
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
   const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'UnScheduleSeletorByKey'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unScheduleSeletorByKey'", NULL);
 #endif
   {
-   self->UnScheduleSeletorByKey(key);
+   self->unScheduleSeletorByKey(key);
    tolua_pushcppstring(tolua_S,(const char*)key);
   }
  }
  return 1;
 tolua_lerror:
- return tolua_dubase_DUScheduler_UnScheduleSeletorByKey00(tolua_S);
+ return tolua_dubase_DUScheduler_unScheduleSeletorByKey00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: UnScheduleSeletorByObject of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_UnScheduleSeletorByObject00
-static int tolua_dubase_DUScheduler_UnScheduleSeletorByObject00(lua_State* tolua_S)
+/* method: unScheduleSeletorByObject of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_unScheduleSeletorByObject00
+static int tolua_dubase_DUScheduler_unScheduleSeletorByObject00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -553,24 +553,24 @@ static int tolua_dubase_DUScheduler_UnScheduleSeletorByObject00(lua_State* tolua
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
   void* pTarget = ((void*)  tolua_touserdata(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'UnScheduleSeletorByObject'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unScheduleSeletorByObject'", NULL);
 #endif
   {
-   self->UnScheduleSeletorByObject(pTarget);
+   self->unScheduleSeletorByObject(pTarget);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'UnScheduleSeletorByObject'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'unScheduleSeletorByObject'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: UnScheduleAll of class  DUScheduler */
-#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_UnScheduleAll00
-static int tolua_dubase_DUScheduler_UnScheduleAll00(lua_State* tolua_S)
+/* method: unScheduleAll of class  DUScheduler */
+#ifndef TOLUA_DISABLE_tolua_dubase_DUScheduler_unScheduleAll00
+static int tolua_dubase_DUScheduler_unScheduleAll00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -584,16 +584,16 @@ static int tolua_dubase_DUScheduler_UnScheduleAll00(lua_State* tolua_S)
  {
   DUScheduler* self = (DUScheduler*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'UnScheduleAll'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unScheduleAll'", NULL);
 #endif
   {
-   self->UnScheduleAll();
+   self->unScheduleAll();
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'UnScheduleAll'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'unScheduleAll'.",&tolua_err);
  return 0;
 #endif
 }
@@ -835,24 +835,24 @@ TOLUA_API int tolua_dubase_open (lua_State* tolua_S)
    tolua_function(tolua_S,"new_local",tolua_dubase_DUObject_new00_local);
    tolua_function(tolua_S,".call",tolua_dubase_DUObject_new00_local);
    tolua_function(tolua_S,"delete",tolua_dubase_DUObject_delete00);
-   tolua_function(tolua_S,"Retain",tolua_dubase_DUObject_Retain00);
-   tolua_function(tolua_S,"Release",tolua_dubase_DUObject_Release00);
-   tolua_function(tolua_S,"PrintCount",tolua_dubase_DUObject_PrintCount00);
+   tolua_function(tolua_S,"retain",tolua_dubase_DUObject_retain00);
+   tolua_function(tolua_S,"release",tolua_dubase_DUObject_release00);
+   tolua_function(tolua_S,"printCount",tolua_dubase_DUObject_printCount00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"DUScheduler","DUScheduler","DUObject",NULL);
   tolua_beginmodule(tolua_S,"DUScheduler");
-   tolua_function(tolua_S,"GetInstance",tolua_dubase_DUScheduler_GetInstance00);
-   tolua_function(tolua_S,"PauseSchedule",tolua_dubase_DUScheduler_PauseSchedule00);
-   tolua_function(tolua_S,"PauseSchedule",tolua_dubase_DUScheduler_PauseSchedule01);
-   tolua_function(tolua_S,"PauseSchedule",tolua_dubase_DUScheduler_PauseSchedule02);
-   tolua_function(tolua_S,"ResumeSchedule",tolua_dubase_DUScheduler_ResumeSchedule00);
-   tolua_function(tolua_S,"ResumeSchedule",tolua_dubase_DUScheduler_ResumeSchedule01);
-   tolua_function(tolua_S,"ResumeSchedule",tolua_dubase_DUScheduler_ResumeSchedule02);
-   tolua_function(tolua_S,"UnScheduleByObject",tolua_dubase_DUScheduler_UnScheduleByObject00);
-   tolua_function(tolua_S,"UnScheduleSeletorByKey",tolua_dubase_DUScheduler_UnScheduleSeletorByKey00);
-   tolua_function(tolua_S,"UnScheduleSeletorByKey",tolua_dubase_DUScheduler_UnScheduleSeletorByKey01);
-   tolua_function(tolua_S,"UnScheduleSeletorByObject",tolua_dubase_DUScheduler_UnScheduleSeletorByObject00);
-   tolua_function(tolua_S,"UnScheduleAll",tolua_dubase_DUScheduler_UnScheduleAll00);
+   tolua_function(tolua_S,"getInstance",tolua_dubase_DUScheduler_getInstance00);
+   tolua_function(tolua_S,"pauseSchedule",tolua_dubase_DUScheduler_pauseSchedule00);
+   tolua_function(tolua_S,"pauseSchedule",tolua_dubase_DUScheduler_pauseSchedule01);
+   tolua_function(tolua_S,"pauseSchedule",tolua_dubase_DUScheduler_pauseSchedule02);
+   tolua_function(tolua_S,"resumeSchedule",tolua_dubase_DUScheduler_resumeSchedule00);
+   tolua_function(tolua_S,"resumeSchedule",tolua_dubase_DUScheduler_resumeSchedule01);
+   tolua_function(tolua_S,"resumeSchedule",tolua_dubase_DUScheduler_resumeSchedule02);
+   tolua_function(tolua_S,"unScheduleByObject",tolua_dubase_DUScheduler_unScheduleByObject00);
+   tolua_function(tolua_S,"unScheduleSeletorByKey",tolua_dubase_DUScheduler_unScheduleSeletorByKey00);
+   tolua_function(tolua_S,"unScheduleSeletorByKey",tolua_dubase_DUScheduler_unScheduleSeletorByKey01);
+   tolua_function(tolua_S,"unScheduleSeletorByObject",tolua_dubase_DUScheduler_unScheduleSeletorByObject00);
+   tolua_function(tolua_S,"unScheduleAll",tolua_dubase_DUScheduler_unScheduleAll00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"DUServer","DUServer","DUObject",tolua_collect_DUServer);

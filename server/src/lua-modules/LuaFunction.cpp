@@ -184,3 +184,8 @@ void LuaFunction::pusharg(const char* v) const
 {
     lua_pushstring(L, v);
 }
+
+void LuaFunction::pushusertype(void* v, const char* type)
+{
+	tolua_pushusertype(L, (void*)v, type);
+}

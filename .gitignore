@@ -7,3 +7,4 @@ Debug/server.exe
 *.idb
 server.VC.db
 server.VC.db
+*.log

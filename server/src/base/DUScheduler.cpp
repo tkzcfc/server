@@ -34,7 +34,7 @@ typedef struct HashSchedulerUpdateEntry
 
 DUScheduler* DUScheduler::DUSchedulerInstance = NULL;
 
-DUScheduler* DUScheduler::GetInstance()
+DUScheduler* DUScheduler::getInstance()
 {
     if(DUSchedulerInstance == NULL)
     {
@@ -491,7 +491,6 @@ void DUScheduler::clearOperationEntry()
 #if OPEN_DEBUG_SCHEDULER == 1
     DU_LOG("m_operationEntry hash Map count is : %d\n", HASH_COUNT(m_operationEntry));
 #endif
-    //m_Mutex.lock();
     HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         HASH_FIND_PTR(m_currentRunEntry, &data->Target, curData);
@@ -529,7 +528,6 @@ void DUScheduler::clearOperationEntry()
         HASH_DELETE(hh, m_operationEntry, data);
         DU_SAFE_DELETE(data);
     }
-    //m_Mutex.unlock();
 }
 
 void DUScheduler::removeEntryFormHash(HashSchedulerUpdateEntry* entry)
@@ -555,9 +553,7 @@ void DUScheduler::addTimerForHashMap(DUObject *pTarget, SchedulerTimer* timerDat
         hashData->Pause = false;
         hashData->Target = pTarget;
         hashData->Timer.push_back(timerData);
-        m_Mutex.lock();
         HASH_ADD_PTR(m_operationEntry, Target, hashData);
-        m_Mutex.unlock();
     }
     else if(timer->m_Delete == false)
     {
@@ -569,9 +565,7 @@ void DUScheduler::addTimerForHashMap(DUObject *pTarget, SchedulerTimer* timerDat
         HASH_FIND_PTR(m_operationEntry, &pTarget, hashData);
         if(hashData)
         {
-            //m_Mutex.lock();
             hashData->Timer.push_back(timerData);
-            //m_Mutex.unlock();
         }
     }
 }
