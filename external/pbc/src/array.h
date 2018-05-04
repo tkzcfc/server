@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_ARRAY_H
+﻿#ifndef PROTOBUF_C_ARRAY_H
 #define PROTOBUF_C_ARRAY_H
 
 #include "varint.h"

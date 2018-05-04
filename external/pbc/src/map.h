@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_MAP_H
+﻿#ifndef PROTOBUF_C_MAP_H
 #define PROTOBUF_C_MAP_H
 
 #include "alloc.h"

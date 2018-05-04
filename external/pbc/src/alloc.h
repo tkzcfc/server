@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_ALLOC_H
+﻿#ifndef PROTOBUF_C_ALLOC_H
 #define PROTOBUF_C_ALLOC_H
 
 #include <stdlib.h>

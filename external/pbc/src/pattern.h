@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_PATTERN_H
+﻿#ifndef PROTOBUF_C_PATTERN_H
 #define PROTOBUF_C_PATTERN_H
 
 #include "pbc.h"

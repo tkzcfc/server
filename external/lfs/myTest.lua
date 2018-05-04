@@ -1,4 +1,4 @@
-require "lfs"
+﻿require "lfs"
 
 --get filename  
 function getFileName(str)  

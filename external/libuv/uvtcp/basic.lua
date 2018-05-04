@@ -1,4 +1,4 @@
--- usage: (use instead of ant)
+﻿-- usage: (use instead of ant)
 -- tolua++ "-L" "basic.lua" "-o" "../../scripting/lua/cocos2dx_support/LuaCocos2d.cpp" "Cocos2d.pkg"
 
 _is_functions = _is_functions or {}
@@ -63,11 +63,7 @@ function post_output_hook(package)
 
 #include "tolua++.h"]],
     [[
-
-//extern "C" {
 #include "tolua_fix.h"
-//}
-
 #include "tolua++.h"
 #include <string>
 ]])
@@ -85,5 +81,3 @@ function post_output_hook(package)
     WRITE(result)
 end
 
-
---tolua++ -L basic.lua -o lua_test.cpp test.pkg

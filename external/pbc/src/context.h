@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_CONTEXT_H
+﻿#ifndef PROTOBUF_C_CONTEXT_H
 #define PROTOBUF_C_CONTEXT_H
 
 #include <stdint.h>

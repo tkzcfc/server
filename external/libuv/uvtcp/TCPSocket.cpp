@@ -1,9 +1,9 @@
-#include "TCPSocket.h"
+ï»¿#include "TCPSocket.h"
 #include "TCPUtils.h"
 
 #define TC_SOCKET_TIMER_DELAY (500U)
 
-//µ÷Õûsocket½ÓÊÕ·¢ËÍ»º´æ´óÐ¡
+//è°ƒæ•´socketæŽ¥æ”¶å‘é€ç¼“å­˜å¤§å°
 void adjustBuffSize(uv_handle_t* handle)
 {
 	int len = 0;
@@ -67,7 +67,7 @@ TCPSocket::TCPSocket(uv_loop_t* loop, uv_tcp_t* tcp)
 	m_call.call = NULL;
 	m_call.userdata = NULL;
 
-	m_state = tcpSocketState::dis_connect;
+	m_state = tcpSocketState::tcps_dis_connect;
 }
 
 TCPSocket::~TCPSocket()
@@ -120,7 +120,7 @@ void TCPSocket::listen(const char* ip, unsigned int port)
 
 void TCPSocket::connect(const char* ip, unsigned int port, unsigned int timeout)
 {
-	if (getState() != tcpSocketState::dis_connect)
+	if (getState() != tcpSocketState::tcps_dis_connect)
 		return;
 
 	m_initConnectInfo = true;
@@ -155,7 +155,7 @@ bool TCPSocket::reconnect()
 
 bool TCPSocket::isConnect()
 {
-	return (getState() == tcpSocketState::connect);
+	return (getState() == tcpSocketState::tcps_connect);
 }
 
 void TCPSocket::disconnect()
@@ -191,7 +191,7 @@ void TCPSocket::invokeCallback(socket_call_type type, void* data)
 	{
 	case connect_suc:
 	{
-		this->setState(tcpSocketState::connect);
+		this->setState(tcpSocketState::tcps_connect);
 		this->clearReadCache();
 		this->clearWriteCache();
 		this->resetReadBuffer();
@@ -202,7 +202,7 @@ void TCPSocket::invokeCallback(socket_call_type type, void* data)
 	}
 		break;
 	case connect_fail:
-		this->setState(tcpSocketState::dis_connect);
+		this->setState(tcpSocketState::tcps_dis_connect);
 		this->resetReadBuffer();
 
 #if OPEN_TCP_UV_DEBUG == 1
@@ -210,14 +210,14 @@ void TCPSocket::invokeCallback(socket_call_type type, void* data)
 #endif
 		break;
 	case connect_ing:
-		this->setState(tcpSocketState::connecting);
+		this->setState(tcpSocketState::tcps_connecting);
 
 #if OPEN_TCP_UV_DEBUG == 1
 		UV_LOG("connecting [%p][%s]:[%d]", this, m_ip.c_str(), m_port);
 #endif
 		break;
 	case connect_timeout:
-		this->setState(tcpSocketState::dis_connect);
+		this->setState(tcpSocketState::tcps_dis_connect);
 
 #if OPEN_TCP_UV_DEBUG == 1
 		UV_LOG("connect timeout [%p][%s]:[%d]", this, m_ip.c_str(), m_port);
@@ -225,7 +225,7 @@ void TCPSocket::invokeCallback(socket_call_type type, void* data)
 		break;
 	case connect_close:
 		this->setTcp(NULL);
-		this->setState(tcpSocketState::dis_connect);
+		this->setState(tcpSocketState::tcps_dis_connect);
 		this->clearReadCache();
 		this->clearWriteCache();
 		this->resetReadBuffer();
@@ -294,7 +294,7 @@ bool TCPSocket::getRecvData(blockdata* data)
 
 void TCPSocket::shutdownSocket()
 {
-	setState(tcpSocketState::dis_connect);
+	setState(tcpSocketState::tcps_dis_connect);
 
 	uv_mutex_lock(&m_basedataMutex);
 
@@ -315,7 +315,7 @@ void TCPSocket::shutdownSocket()
 	uv_mutex_unlock(&m_basedataMutex);
 }
 
-bool TCPSocket::send(char* data, unsigned int len)
+bool TCPSocket::send(const char* data, unsigned int len)
 {
 	if (data == NULL || len <= 0)
 	{
@@ -337,7 +337,7 @@ bool TCPSocket::send(char* data, unsigned int len)
 		return false;
 	}
 
-	if (getState() != tcpSocketState::connect)
+	if (getState() != tcpSocketState::tcps_connect)
 		return false;
 
 	const unsigned int headlen = sizeof(TCPMsgHead);
@@ -374,7 +374,7 @@ bool TCPSocket::send(char* data, unsigned int len)
 	block.len = headlen + len;
 #endif
 
-	//ÏûÏ¢·ÖÆ¬
+	//æ¶ˆæ¯åˆ†ç‰‡
 	if (block.len > TCP_WRITE_MAX_LEN)
 	{
 		char* bigData = block.data;
@@ -519,7 +519,7 @@ void TCPSocket::clearReadCache()
 
 void TCPSocket::write()
 {
-	if (getState() != tcpSocketState::connect)
+	if (getState() != tcpSocketState::tcps_connect)
 		return;
 
 	if (uv_mutex_trylock(&m_writeMutex) != 0)
@@ -564,7 +564,7 @@ void TCPSocket::write()
 
 void TCPSocket::read(ssize_t nread, const uv_buf_t *buf)
 {
-	if (getState() != tcpSocketState::connect)
+	if (getState() != tcpSocketState::tcps_connect)
 	{
 		return;
 	}
@@ -577,7 +577,7 @@ void TCPSocket::read(ssize_t nread, const uv_buf_t *buf)
 	{
 		TCPMsgHead* h = (TCPMsgHead*)m_recvBuffer->getHeadBlockData();
 
-		//²»ºÏ·¨¿Í»§¶Ë
+		//ä¸åˆæ³•å®¢æˆ·ç«¯
 		if (h->len > TCP_BIG_MSG_MAX_LEN)
 		{
 			this->resetReadBuffer();
@@ -588,7 +588,7 @@ void TCPSocket::read(ssize_t nread, const uv_buf_t *buf)
 
 		int subv = m_recvBuffer->getDataLength() - (h->len + headlen);
 		
-		//ÏûÏ¢½ÓÊÕÍê³É
+		//æ¶ˆæ¯æŽ¥æ”¶å®Œæˆ
 		if (subv >= 0)
 		{
 			char* pMsg = (char*)fc_malloc(m_recvBuffer->getDataLength());
@@ -605,7 +605,7 @@ void TCPSocket::read(ssize_t nread, const uv_buf_t *buf)
 			{
 				this->pushReadData(block);
 			}
-			else//Êý¾Ý²»ºÏ·¨
+			else//æ•°æ®ä¸åˆæ³•
 			{
 				UV_LOG("data is wrongful (2)!!!!");
 			}
@@ -693,7 +693,7 @@ void TCPSocket::uv_connect_async_callback(uv_async_t* handle)
 {
 	TCPSocket* s = (TCPSocket*)handle->data;
 
-	if (s->getState() != tcpSocketState::dis_connect)
+	if (s->getState() != tcpSocketState::tcps_dis_connect)
 		return;
 
 	s->stopConnectTimer();
@@ -828,7 +828,7 @@ void TCPSocket::uv_listen_async_callback(uv_async_t* handle)
 	adjustBuffSize((uv_handle_t*)tcp);
 	s->setTcp(tcp);
 
-	s->setState(tcpSocketState::connect);
+	s->setState(tcpSocketState::tcps_connect);
 }
 
 void TCPSocket::server_on_after_new_connection(uv_stream_t *server, int status) 
@@ -849,8 +849,8 @@ void TCPSocket::server_on_after_new_connection(uv_stream_t *server, int status)
 	r = uv_accept(server, handle);
 	CHECK_UV_ASSERT(r);
 
-	//ÓÐµÄ»ú×Óµ÷ÓÃuv_tcp_getpeername±¨´í
-	//sockaddr_in client_addr;¸ÄÎª sockaddr_in client_addr[2];
+	//æœ‰çš„æœºå­è°ƒç”¨uv_tcp_getpeernameæŠ¥é”™
+	//sockaddr_in client_addr;æ”¹ä¸º sockaddr_in client_addr[2];
 	//https://blog.csdn.net/readyisme/article/details/28249883
 	//http://msdn.microsoft.com/en-us/library/ms737524(VS.85).aspx
 	//
@@ -880,7 +880,7 @@ void TCPSocket::server_on_after_new_connection(uv_stream_t *server, int status)
 #endif
 
 	news->m_ip = szIp;
-	news->m_state = tcpSocketState::connect;
+	news->m_state = tcpSocketState::tcps_connect;
 	client->data = news;
 	s->invokeCallback(socket_call_type::connect_new, (void*)news);
 

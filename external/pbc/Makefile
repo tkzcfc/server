@@ -1,4 +1,4 @@
-CC = gcc
+﻿CC = gcc
 CFLAGS = -O2 -fPIC -Wall
 AR = ar rc
 

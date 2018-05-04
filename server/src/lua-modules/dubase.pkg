@@ -1,0 +1,73 @@
+﻿//tolua++ -L basic.lua -o lua_dubase.cpp dubase.pkg
+
+
+$#include "DUObject.h"
+$#include "DUScheduler.h"
+$#include "DUServer.h"
+
+class DUObject
+{
+public:
+    DUObject();
+    
+    ~DUObject();
+    
+    virtual DUObject* Retain();
+    
+    virtual void Release();
+    
+    void PrintCount();
+};
+
+
+
+class DUScheduler : public DUObject
+{
+public:
+    
+    static DUScheduler* GetInstance();
+
+    //pause
+    void PauseSchedule(DUObject* pTarget);
+    
+    void PauseSchedule(void *pTarget, const std::string& key);
+    
+    void PauseSchedule(const std::string& key);
+    
+    //resume
+    void ResumeSchedule(DUObject* pTarget);
+    
+    void ResumeSchedule(void *pTarget, const std::string& key);
+    
+    void ResumeSchedule(const std::string& key);
+    
+    //cancel
+    void UnScheduleByObject(DUObject *pTarget);
+    
+    void UnScheduleSeletorByKey(void *pTarget, const std::string& key);
+    
+    void UnScheduleSeletorByKey(const std::string& key);
+    
+    void UnScheduleSeletorByObject(void *pTarget);
+    
+    void UnScheduleAll();
+};
+
+
+class DUServer : public DUObject
+{
+public:
+	DUServer();
+	~DUServer();
+
+	bool startServer(const char* ip, int port);
+
+	bool closeServer();
+
+	bool isCloseFinish();
+
+	void setCallFunc(LuaFunction handle);
+};
+
+
+

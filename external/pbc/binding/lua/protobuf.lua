@@ -1,4 +1,4 @@
-local c = require "protobuf.c"
+﻿local c = require "protobuf.c"
 
 local setmetatable = setmetatable
 local type = type

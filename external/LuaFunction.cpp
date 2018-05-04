@@ -1,4 +1,4 @@
-#include "LuaFunction.hpp"
+﻿#include "LuaFunction.hpp"
 
 LuaRef::LuaRef(): L(nullptr), ref_(LUA_NOREF)
 {

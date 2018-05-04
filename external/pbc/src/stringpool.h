@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_STRINGPOOL_H
+﻿#ifndef PROTOBUF_C_STRINGPOOL_H
 #define PROTOBUF_C_STRINGPOOL_H
 
 struct _stringpool;

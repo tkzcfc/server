@@ -29,11 +29,11 @@ struct blockdata
 	unsigned int len;
 };
 
-enum class tcpSocketState
+enum tcpSocketState
 {
-	dis_connect,
-	connecting,
-	connect
+	tcps_dis_connect,
+	tcps_connecting,
+	tcps_connect
 };
 
 class TCPSocket
@@ -55,7 +55,7 @@ public:
 
 	void disconnect();
 
-	bool send(char* data, unsigned int len);
+	bool send(const char* data, unsigned int len);
 
 	uv_tcp_t* getTcp();
 	

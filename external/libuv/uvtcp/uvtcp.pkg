@@ -1,0 +1,45 @@
+﻿//tolua++ -L basic.lua -o lua_uvtcp.cpp uvtcp.pkg
+
+
+$#include "TCPServer.h"
+$#include "TCPSocket.h"
+
+
+enum tcpSocketState
+{
+	tcps_dis_connect,
+	tcps_connecting,
+	tcps_connect
+};
+
+
+class TCPSocket
+{
+public:
+	
+	virtual ~TCPSocket();
+
+	void listen(const char* ip, unsigned int port);
+	
+	void connect(const char* ip, unsigned int port, unsigned int timeout);
+
+	bool reconnect();
+
+	bool isConnect();
+
+	void disconnect();
+
+	bool send(const char* data, unsigned int len);
+	
+	std::string getIp();
+	
+	unsigned int getPort();
+
+	tcpSocketState getState();
+
+	bool setNoDelay(bool enable);
+
+	bool setKeepAlive(int enable, unsigned int delay);
+
+};
+

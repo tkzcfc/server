@@ -1,10 +1,11 @@
-#pragma once
+﻿#pragma once
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 #include "lua.h"
 #include "lauxlib.h"
+#include "tolua++.h"
 #ifdef __cplusplus
 }
 #endif
@@ -65,6 +66,10 @@ public:
         pusharg(first);
         pusharg(args...);
     }
+	void pushusertype(void* v, const char* type)
+	{
+		tolua_pushusertype(L, (void*)v, type);
+	}
 private:
     mutable int trackback_;
 };

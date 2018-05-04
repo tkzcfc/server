@@ -1,4 +1,4 @@
-/* Copyright (c) 2013, Sony Mobile Communications AB
+﻿/* Copyright (c) 2013, Sony Mobile Communications AB
  * Copyright (c) 2012, Google Inc.
    All rights reserved.
 

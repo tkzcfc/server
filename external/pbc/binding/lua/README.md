@@ -1,4 +1,4 @@
-## Install
+﻿## Install
 
 Make and install protobuf.so ( or protobuf.dll in windows ) and protobuf.lua into your lua path.
 

@@ -5,3 +5,5 @@ Debug/server.exe
 *.ilk
 *.pdb
 *.idb
+server.VC.db
+server.VC.db

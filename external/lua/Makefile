@@ -1,4 +1,4 @@
-# makefile for building Lua
+﻿# makefile for building Lua
 # see ../INSTALL for installation instructions
 # see ../Makefile and luaconf.h for further customization
 

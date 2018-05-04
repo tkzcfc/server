@@ -2,8 +2,8 @@
 //  DUSchedulerTimer.hpp
 //  NNNN
 //
-//  Created by æ–¹ç¨‹ on 17/1/18.
-//  Copyright Â© 2017å¹´ lianshi. All rights reserved.
+//  Created by ·½³Ì on 17/1/18.
+//  Copyright ? 2017Äê lianshi. All rights reserved.
 //
 
 #ifndef DUSchedulerTimer_hpp
@@ -50,7 +50,7 @@ public:
     float m_Interval; //interval
     float m_Delay;    //delay time
     float m_Total;    //total time
-    unsigned int m_Repeat;//é‡å¤æ¬¡æ•°
+    unsigned int m_Repeat;//ÖØ¸´´ÎÊı
     bool m_Paused;
     bool m_Delete;
     

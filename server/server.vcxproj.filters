@@ -54,8 +54,11 @@
     <Filter Include="base">
       <UniqueIdentifier>{19d5b7f5-0ec9-433c-95a6-b10fd185dbce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="module\tolua">
+      <UniqueIdentifier>{7e243e22-838d-4639-b630-dc9764661357}</UniqueIdentifier>
+    </Filter>
     <Filter Include="net">
-      <UniqueIdentifier>{54e2bf63-7a76-4116-a715-d386432cee18}</UniqueIdentifier>
+      <UniqueIdentifier>{8ee391cd-5100-4617-8b6f-c1804b09645c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -323,13 +326,40 @@
     <ClCompile Include="src\lua-modules\lua_modules.cpp">
       <Filter>lua-modules</Filter>
     </ClCompile>
+    <ClCompile Include="..\external\libuv\uvtcp\lua_uvtcp.cpp">
+      <Filter>module\libuv\uvtcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\tolua\tolua_push.c">
+      <Filter>module\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\tolua\tolua_to.c">
+      <Filter>module\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\tolua\tolua_event.c">
+      <Filter>module\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\tolua\tolua_is.c">
+      <Filter>module\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\tolua\tolua_map.c">
+      <Filter>module\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="src\net\DUServer.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lua-modules\lua_dubase.cpp">
+      <Filter>lua-modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\tolua\tolua_fix.cpp">
+      <Filter>module\tolua</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\DUObject.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
     <ClCompile Include="src\base\DUScheduler.cpp">
       <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="src\base\DUSchedulerTimer.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base\DUObject.cpp">
       <Filter>base</Filter>
     </ClCompile>
   </ItemGroup>
@@ -547,11 +577,23 @@
     <ClInclude Include="src\lua-modules\LuaFunction.hpp">
       <Filter>lua-modules</Filter>
     </ClInclude>
-    <ClInclude Include="src\base\DUObject.h">
-      <Filter>base</Filter>
+    <ClInclude Include="..\external\tolua\tolua++.h">
+      <Filter>module\tolua</Filter>
     </ClInclude>
-    <ClInclude Include="src\base\DUScheduler.h">
-      <Filter>base</Filter>
+    <ClInclude Include="..\external\tolua\tolua_event.h">
+      <Filter>module\tolua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\libuv\uvtcp\lua_uvtcp.h">
+      <Filter>module\libuv\uvtcp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\net\DUServer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lua-modules\lua_dubase.h">
+      <Filter>lua-modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\tolua\tolua_fix.h">
+      <Filter>module\tolua</Filter>
     </ClInclude>
     <ClInclude Include="src\base\DUSchedulerTimer.h">
       <Filter>base</Filter>
@@ -560,6 +602,12 @@
       <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="src\base\uthash.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\DUObject.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\DUScheduler.h">
       <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>

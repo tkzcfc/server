@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2013, Kenneth MacKay
 Copyright (c) 2014, Emergya (Cloud4all, FP7/2007-2013 grant agreement #289016)
 All rights reserved.

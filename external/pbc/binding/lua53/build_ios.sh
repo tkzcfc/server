@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 #  Automatic build script for pbc-lua
 #  for iPhoneOS and iPhoneSimulator

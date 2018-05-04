@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_H
+﻿#ifndef PROTOBUF_C_H
 #define PROTOBUF_C_H
 
 #include <stdio.h>

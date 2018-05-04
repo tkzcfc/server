@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_BOOTSTRAP_H
+﻿#ifndef PROTOBUF_C_BOOTSTRAP_H
 #define PROTOBUF_C_BOOTSTRAP_H
 
 #include "proto.h"

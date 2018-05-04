@@ -2,8 +2,8 @@
 //  DUSchedulerTimer.cpp
 //  NNNN
 //
-//  Created by æ–¹ç¨‹ on 17/1/18.
-//  Copyright Â© 2017å¹´ lianshi. All rights reserved.
+//  Created by ·½³Ì on 17/1/18.
+//  Copyright ? 2017Äê lianshi. All rights reserved.
 //
 
 #include "DUSchedulerTimer.h"

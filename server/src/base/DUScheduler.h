@@ -2,8 +2,8 @@
 //  DUScheduler.hpp
 //  NNNN
 //
-//  Created by æ–¹ç¨‹ on 16/11/14.
-//  Copyright Â© 2016å¹´ lianshi. All rights reserved.
+//  Created by ·½³Ì on 16/11/14.
+//  Copyright ? 2016Äê lianshi. All rights reserved.
 //
 
 

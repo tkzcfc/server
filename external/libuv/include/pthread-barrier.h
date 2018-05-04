@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2016, Kari Tristan Helgason <kthelgason@gmail.com>
 
 Permission to use, copy, modify, and/or distribute this software for any

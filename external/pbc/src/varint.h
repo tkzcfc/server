@@ -1,4 +1,4 @@
-#ifndef PROTOBUF_C_VARINT_H
+﻿#ifndef PROTOBUF_C_VARINT_H
 #define PROTOBUF_C_VARINT_H
 
 #include <stdint.h>

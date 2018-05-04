@@ -1,4 +1,4 @@
-require "protobuf"
+﻿require "protobuf"
 
 addr = io.open("../../build/addressbook.pb","rb")
 buffer = addr:read "*a"
