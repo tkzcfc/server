@@ -85,7 +85,7 @@ TimerTargetSelector::TimerTargetSelector()
     m_Object = NULL;
 }
 
-void TimerTargetSelector::Init(DUScheduler* scheduler, DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool infinite, bool paused)
+void TimerTargetSelector::init(DUScheduler* scheduler, DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool infinite, bool paused)
 {
     m_Scheduler = scheduler;
     m_Selector = pfnSelector;
@@ -103,7 +103,7 @@ void TimerTargetSelector::trigger(float dt)
 
 void TimerTargetSelector::cancel()
 {
-    m_Scheduler->UnScheduleBySelector(m_Selector, m_Object);
+    m_Scheduler->unScheduleBySelector(m_Selector, m_Object);
 }
 
 bool TimerTargetSelector::isEqual(SchedulerTimer* otherTimer)
@@ -140,7 +140,7 @@ TimerTargetCallback::TimerTargetCallback()
     m_Object = NULL;
 }
 
-void TimerTargetCallback::Init(DUScheduler* scheduler, duSchedulerFunc callback, void *pTarget, const std::string key, float fInterval, unsigned int repeat, float delay, bool infinite, bool paused)
+void TimerTargetCallback::init(DUScheduler* scheduler, duSchedulerFunc callback, void *pTarget, const std::string key, float fInterval, unsigned int repeat, float delay, bool infinite, bool paused)
 {
     m_Scheduler = scheduler;
     m_Callback = callback;
@@ -156,7 +156,7 @@ void TimerTargetCallback::trigger(float dt)
 
 void TimerTargetCallback::cancel()
 {
-    m_Scheduler->UnScheduleSeletorByKey(m_Object, m_Key);
+    m_Scheduler->unScheduleSeletorByKey(m_Object, m_Key);
 }
 
 bool TimerTargetCallback::isEqual(SchedulerTimer* otherTimer)

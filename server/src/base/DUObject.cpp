@@ -23,33 +23,33 @@ static unsigned int __objectCount = 0;
 DUObject::DUObject()
 {
     __objectCount++;
-    DU_LOG("object count is %d\n", __objectCount);
-    m_Count = 1;
+    //DU_LOG("object count is %d\n", __objectCount);
+	m_count = 1;
 }
 
 DUObject::~DUObject()
 {
     DUScheduler::GetInstance()->UnScheduleByObject(this);
     __objectCount--;
-    DU_LOG("~object count is %d\n", __objectCount);
+    //DU_LOG("~object count is %d\n", __objectCount);
 }
 
-DUObject* DUObject::Retain()
+DUObject* DUObject::retain()
 {
-    m_Count++;
+	m_count++;
     return this;
 }
 
-void DUObject::Release()
+void DUObject::release()
 {
-    m_Count--;
-    if(m_Count <= 0)
+	m_count--;
+    if(m_count <= 0)
     {
         delete this;
     }
 }
 
-void DUObject::PrintCount()
+void DUObject::printCount()
 {
-    DU_LOG("count is %d\n", m_Count);
+    DU_LOG("count is %d\n", m_count);
 }

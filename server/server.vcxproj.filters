@@ -317,9 +317,6 @@
     <ClCompile Include="..\external\pbc\src\wmessage.cpp">
       <Filter>module\pbc\binding\src</Filter>
     </ClCompile>
-    <ClCompile Include="server.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\lua-modules\LuaFunction.cpp">
       <Filter>lua-modules</Filter>
     </ClCompile>
@@ -361,6 +358,12 @@
     </ClCompile>
     <ClCompile Include="src\base\DUSchedulerTimer.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DUGame.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -609,6 +612,9 @@
     </ClInclude>
     <ClInclude Include="src\base\DUScheduler.h">
       <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DUGame.h">
+      <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

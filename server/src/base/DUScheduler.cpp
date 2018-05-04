@@ -45,25 +45,25 @@ DUScheduler* DUScheduler::GetInstance()
 
 DUScheduler::DUScheduler()
 {
-    m_CurrentRunEntry = NULL;
-    m_OperationEntry = NULL;
+    m_currentRunEntry = NULL;
+    m_operationEntry = NULL;
 }
 
 DUScheduler::~DUScheduler()
 {
-    ClearOperationEntry();
+    clearOperationEntry();
     HashSchedulerUpdateEntry* data, *tmp;
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
-        RemoveEntryFormHash(data);
+        removeEntryFormHash(data);
     }
 }
 
-void DUScheduler::Update(float delay)
+void DUScheduler::update(float delay)
 {
-    ClearOperationEntry();
+    clearOperationEntry();
     HashSchedulerUpdateEntry* data, *tmp;
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Delete || data->Pause)
             continue;
@@ -74,53 +74,53 @@ void DUScheduler::Update(float delay)
     }
 }
 
-void DUScheduler::Schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool paused/* = false*/, bool infinite/* = false*/)
+void DUScheduler::schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool paused/* = false*/, bool infinite/* = false*/)
 {
     if(pfnSelector == NULL || pTarget == NULL)
         return;
     TimerTargetSelector* selectorData = new TimerTargetSelector();
-    selectorData->Init(this, pfnSelector, pTarget, fInterval, repeat, delay, infinite, paused);
+    selectorData->init(this, pfnSelector, pTarget, fInterval, repeat, delay, infinite, paused);
     addTimerForHashMap(pTarget, selectorData);
-    selectorData->Release();
+    selectorData->release();
 }
 
-void DUScheduler::Schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, bool bPaused/* = false*/)
+void DUScheduler::schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, bool bPaused/* = false*/)
 {
-    this->Schedule(pfnSelector, pTarget, fInterval, 0, 0.0f, bPaused, true);
+    this->schedule(pfnSelector, pTarget, fInterval, 0, 0.0f, bPaused, true);
 }
 
-void DUScheduler::ScheduleSelector(const duSchedulerFunc& callback, void *target, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite/* = false*/)
+void DUScheduler::scheduleSelector(const duSchedulerFunc& callback, void *target, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite/* = false*/)
 {
     if(callback == NULL)
         return;
     DU_ASSERT(key != "");
     TimerTargetCallback* callbackData = new TimerTargetCallback();
-    callbackData->Init(this, callback, target, key, interval, repeat, delay, infinite, paused);
+    callbackData->init(this, callback, target, key, interval, repeat, delay, infinite, paused);
     addTimerForHashMap((DUObject*)target, callbackData);
-    callbackData->Release();
+    callbackData->release();
 }
 
-void DUScheduler::ScheduleSelector(const duSchedulerFunc& callback, void *target, float interval, bool paused, const std::string& key)
+void DUScheduler::scheduleSelector(const duSchedulerFunc& callback, void *target, float interval, bool paused, const std::string& key)
 {
-    this->ScheduleSelector(callback, target, interval, 0, 0.0f, paused, key, true);
+    this->scheduleSelector(callback, target, interval, 0, 0.0f, paused, key, true);
 }
 
-void DUScheduler::ScheduleSelector(const duSchedulerFunc& callback, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite/* = false*/)
+void DUScheduler::scheduleSelector(const duSchedulerFunc& callback, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite/* = false*/)
 {
-    this->ScheduleSelector(callback, NULL, interval, repeat, delay, paused, key, infinite);
+    this->scheduleSelector(callback, NULL, interval, repeat, delay, paused, key, infinite);
 }
 
-void DUScheduler::ScheduleSelector(const duSchedulerFunc& callback, float interval, bool paused, const std::string& key)
+void DUScheduler::scheduleSelector(const duSchedulerFunc& callback, float interval, bool paused, const std::string& key)
 {
-    this->ScheduleSelector(callback, NULL, interval, 0, 0.0f, paused, key, true);
+    this->scheduleSelector(callback, NULL, interval, 0, 0.0f, paused, key, true);
 }
 
 //pause
-void DUScheduler::PauseSchedule(DUObject* pTarget)
+void DUScheduler::pauseSchedule(DUObject* pTarget)
 {
     std::vector<SchedulerTimerPtr>::iterator itTimer;
     HashSchedulerUpdateEntry *data, *tmp;
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -131,7 +131,7 @@ void DUScheduler::PauseSchedule(DUObject* pTarget)
             }
         }
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -144,12 +144,12 @@ void DUScheduler::PauseSchedule(DUObject* pTarget)
     }
 }
 
-void DUScheduler::PauseSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
+void DUScheduler::pauseSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
 {
     std::vector<SchedulerTimerPtr>::iterator itTimer;
     HashSchedulerUpdateEntry *data, *tmp;
     
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -162,7 +162,7 @@ void DUScheduler::PauseSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
             }
         }
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -177,12 +177,12 @@ void DUScheduler::PauseSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
     }
 }
 
-void DUScheduler::PauseSchedule(void *pTarget, const std::string& key)
+void DUScheduler::pauseSchedule(void *pTarget, const std::string& key)
 {
     std::vector<SchedulerTimerPtr>::iterator itTimer;
     HashSchedulerUpdateEntry *data, *tmp;
     
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -195,7 +195,7 @@ void DUScheduler::PauseSchedule(void *pTarget, const std::string& key)
             }
         }
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -210,18 +210,18 @@ void DUScheduler::PauseSchedule(void *pTarget, const std::string& key)
     }
 }
 
-void DUScheduler::PauseSchedule(const std::string& key)
+void DUScheduler::pauseSchedule(const std::string& key)
 {
-    this->PauseSchedule(NULL, key);
+    this->pauseSchedule(NULL, key);
 }
 
 //resume
-void DUScheduler::ResumeSchedule(DUObject* pTarget)
+void DUScheduler::resumeSchedule(DUObject* pTarget)
 {
     std::vector<SchedulerTimerPtr>::iterator itTimer;
     HashSchedulerUpdateEntry *data, *tmp;
     
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -232,7 +232,7 @@ void DUScheduler::ResumeSchedule(DUObject* pTarget)
             }
         }
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -245,12 +245,12 @@ void DUScheduler::ResumeSchedule(DUObject* pTarget)
     }
 }
 
-void DUScheduler::ResumeSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
+void DUScheduler::resumeSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
 {
     std::vector<SchedulerTimerPtr>::iterator itTimer;
     HashSchedulerUpdateEntry *data, *tmp;
     
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -264,7 +264,7 @@ void DUScheduler::ResumeSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
             }
         }
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -280,12 +280,12 @@ void DUScheduler::ResumeSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector)
     }
 }
 
-void DUScheduler::ResumeSchedule(void *pTarget, const std::string& key)
+void DUScheduler::resumeSchedule(void *pTarget, const std::string& key)
 {
     std::vector<SchedulerTimerPtr>::iterator itTimer;
     HashSchedulerUpdateEntry *data, *tmp;
     
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -299,7 +299,7 @@ void DUScheduler::ResumeSchedule(void *pTarget, const std::string& key)
             }
         }
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         if(data->Target == (void*)pTarget)
         {
@@ -315,17 +315,17 @@ void DUScheduler::ResumeSchedule(void *pTarget, const std::string& key)
     }
 }
 
-void DUScheduler::ResumeSchedule(const std::string& key)
+void DUScheduler::resumeSchedule(const std::string& key)
 {
-    this->ResumeSchedule(NULL, key);
+    this->resumeSchedule(NULL, key);
 }
 
 //cancel
-void DUScheduler::UnScheduleBySelector(DUScheduler_SEL pfnSelector, DUObject *pTarget)
+void DUScheduler::unScheduleBySelector(DUScheduler_SEL pfnSelector, DUObject *pTarget)
 {
     HashSchedulerUpdateEntry* hashData;
     SchedulerTimerPtr curTimer = NULL;
-    HASH_FIND_PTR(m_CurrentRunEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_currentRunEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -337,7 +337,7 @@ void DUScheduler::UnScheduleBySelector(DUScheduler_SEL pfnSelector, DUObject *pT
             }
         }
     }
-    HASH_FIND_PTR(m_OperationEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_operationEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -351,10 +351,10 @@ void DUScheduler::UnScheduleBySelector(DUScheduler_SEL pfnSelector, DUObject *pT
     }
 }
 
-void DUScheduler::UnScheduleByObject(DUObject *pTarget)
+void DUScheduler::unScheduleByObject(DUObject *pTarget)
 {
     HashSchedulerUpdateEntry* hashData;
-    HASH_FIND_PTR(m_CurrentRunEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_currentRunEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -362,7 +362,7 @@ void DUScheduler::UnScheduleByObject(DUObject *pTarget)
             (*itTimer)->m_Delete = true;
         }
     }
-    HASH_FIND_PTR(m_OperationEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_operationEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -372,11 +372,11 @@ void DUScheduler::UnScheduleByObject(DUObject *pTarget)
     }
 }
 
-void DUScheduler::UnScheduleSeletorByKey(void *pTarget, const std::string& key)
+void DUScheduler::unScheduleSeletorByKey(void *pTarget, const std::string& key)
 {
     HashSchedulerUpdateEntry* hashData;
     SchedulerTimerPtr curTimer = NULL;
-    HASH_FIND_PTR(m_CurrentRunEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_currentRunEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -394,7 +394,7 @@ void DUScheduler::UnScheduleSeletorByKey(void *pTarget, const std::string& key)
 #endif
         }
     }
-    HASH_FIND_PTR(m_OperationEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_operationEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -408,15 +408,15 @@ void DUScheduler::UnScheduleSeletorByKey(void *pTarget, const std::string& key)
     }
 }
 
-void DUScheduler::UnScheduleSeletorByKey(const std::string& key)
+void DUScheduler::unScheduleSeletorByKey(const std::string& key)
 {
-    this->UnScheduleSeletorByKey(NULL, key);
+    this->unScheduleSeletorByKey(NULL, key);
 }
 
-void DUScheduler::UnScheduleSeletorByObject(void *pTarget)
+void DUScheduler::unScheduleSeletorByObject(void *pTarget)
 {
     HashSchedulerUpdateEntry* hashData;
-    HASH_FIND_PTR(m_CurrentRunEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_currentRunEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -424,7 +424,7 @@ void DUScheduler::UnScheduleSeletorByObject(void *pTarget)
             (*itTimer)->m_Delete = true;
         }
     }
-    HASH_FIND_PTR(m_OperationEntry, &pTarget, hashData);
+    HASH_FIND_PTR(m_operationEntry, &pTarget, hashData);
     if(hashData)
     {
         SCHEDULER_TIMER_ITERATOR(hashData->Timer)
@@ -434,30 +434,30 @@ void DUScheduler::UnScheduleSeletorByObject(void *pTarget)
     }
 }
 
-void DUScheduler::UnScheduleAll()
+void DUScheduler::unScheduleAll()
 {
     HashSchedulerUpdateEntry *data, *tmp;
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         data->Delete = true;
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
         data->Delete = true;
     }
 }
 
-void DUScheduler::ClearOperationEntry()
+void DUScheduler::clearOperationEntry()
 {
     std::vector<SchedulerTimerPtr>::iterator itTimer;
     HashSchedulerUpdateEntry *data, *tmp, *curData;
     SchedulerTimerPtr timerTmp = NULL;
     
-    HASH_ITER(hh, m_CurrentRunEntry, data, tmp)
+    HASH_ITER(hh, m_currentRunEntry, data, tmp)
     {
         if(data->Delete)
         {
-            RemoveEntryFormHash(data);
+            removeEntryFormHash(data);
 #if OPEN_DEBUG_SCHEDULER == 1
             DU_LOG("remove running data from hash Map\n");
 #endif
@@ -469,10 +469,12 @@ void DUScheduler::ClearOperationEntry()
                 timerTmp = (*itTimer);
                 if(timerTmp->m_Delete)
                 {
-                    timerTmp->PrintCount();
-                    itTimer = data->Timer.erase(itTimer);
-                    timerTmp->PrintCount();
 #if OPEN_DEBUG_SCHEDULER == 1
+                    timerTmp->printCount();
+#endif
+                    itTimer = data->Timer.erase(itTimer);
+#if OPEN_DEBUG_SCHEDULER == 1
+                    timerTmp->printCount();
                     DU_LOG("remove timer\n");
 #endif
                 }
@@ -484,15 +486,15 @@ void DUScheduler::ClearOperationEntry()
         }
     }
     timerTmp = NULL;
-    if(HASH_COUNT(m_OperationEntry) <= 0)
+    if(HASH_COUNT(m_operationEntry) <= 0)
         return;
 #if OPEN_DEBUG_SCHEDULER == 1
-    DU_LOG("m_OperationEntry hash Map count is : %d\n", HASH_COUNT(m_OperationEntry));
+    DU_LOG("m_operationEntry hash Map count is : %d\n", HASH_COUNT(m_operationEntry));
 #endif
     //m_Mutex.lock();
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
-        HASH_FIND_PTR(m_CurrentRunEntry, &data->Target, curData);
+        HASH_FIND_PTR(m_currentRunEntry, &data->Target, curData);
         for(itTimer = data->Timer.begin(); itTimer != data->Timer.end(); )
         {
             timerTmp = (*itTimer);
@@ -509,7 +511,7 @@ void DUScheduler::ClearOperationEntry()
                     curData->Pause = false;
                     curData->Target = data->Target;
                     curData->Timer.push_back(timerTmp);
-                    HASH_ADD_PTR(m_CurrentRunEntry, Target, curData);
+                    HASH_ADD_PTR(m_currentRunEntry, Target, curData);
 #if OPEN_DEBUG_SCHEDULER == 1
                     DU_LOG("Add new Data\n");
 #endif
@@ -522,29 +524,29 @@ void DUScheduler::ClearOperationEntry()
             }
         }
     }
-    HASH_ITER(hh, m_OperationEntry, data, tmp)
+    HASH_ITER(hh, m_operationEntry, data, tmp)
     {
-        HASH_DELETE(hh, m_OperationEntry, data);
+        HASH_DELETE(hh, m_operationEntry, data);
         DU_SAFE_DELETE(data);
     }
     //m_Mutex.unlock();
 }
 
-void DUScheduler::RemoveEntryFormHash(HashSchedulerUpdateEntry* entry)
+void DUScheduler::removeEntryFormHash(HashSchedulerUpdateEntry* entry)
 {
     entry->Timer.clear();
-    HASH_DELETE(hh, m_CurrentRunEntry, entry);
+    HASH_DELETE(hh, m_currentRunEntry, entry);
     DU_SAFE_DELETE(entry);
 }
 
 void DUScheduler::addTimerForHashMap(DUObject *pTarget, SchedulerTimer* timerData)
 {
-    SchedulerTimerPtr timer = findSchedulerTimer(m_CurrentRunEntry, pTarget, timerData);
+    SchedulerTimerPtr timer = findSchedulerTimer(m_currentRunEntry, pTarget, timerData);
     if(timer.GetPtr() && timer->m_Delete == false)
     {
         return;
     }
-    timer = findSchedulerTimer(m_OperationEntry, pTarget, timerData);
+    timer = findSchedulerTimer(m_operationEntry, pTarget, timerData);
     HashSchedulerUpdateEntry* hashData = NULL;
     if(timer == NULL)
     {
@@ -554,7 +556,7 @@ void DUScheduler::addTimerForHashMap(DUObject *pTarget, SchedulerTimer* timerDat
         hashData->Target = pTarget;
         hashData->Timer.push_back(timerData);
         m_Mutex.lock();
-        HASH_ADD_PTR(m_OperationEntry, Target, hashData);
+        HASH_ADD_PTR(m_operationEntry, Target, hashData);
         m_Mutex.unlock();
     }
     else if(timer->m_Delete == false)
@@ -564,7 +566,7 @@ void DUScheduler::addTimerForHashMap(DUObject *pTarget, SchedulerTimer* timerDat
     else
     {
         HashSchedulerUpdateEntry* hashData;
-        HASH_FIND_PTR(m_OperationEntry, &pTarget, hashData);
+        HASH_FIND_PTR(m_operationEntry, &pTarget, hashData);
         if(hashData)
         {
             //m_Mutex.lock();

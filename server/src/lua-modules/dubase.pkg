@@ -12,11 +12,11 @@ public:
     
     ~DUObject();
     
-    virtual DUObject* Retain();
+    virtual DUObject* retain();
     
-    virtual void Release();
+    virtual void release();
     
-    void PrintCount();
+    void printCount();
 };
 
 
@@ -25,32 +25,32 @@ class DUScheduler : public DUObject
 {
 public:
     
-    static DUScheduler* GetInstance();
+    static DUScheduler* getInstance();
 
     //pause
-    void PauseSchedule(DUObject* pTarget);
+    void pauseSchedule(DUObject* pTarget);
     
-    void PauseSchedule(void *pTarget, const std::string& key);
+    void pauseSchedule(void *pTarget, const std::string& key);
     
-    void PauseSchedule(const std::string& key);
+    void pauseSchedule(const std::string& key);
     
     //resume
-    void ResumeSchedule(DUObject* pTarget);
+    void resumeSchedule(DUObject* pTarget);
     
-    void ResumeSchedule(void *pTarget, const std::string& key);
+    void resumeSchedule(void *pTarget, const std::string& key);
     
-    void ResumeSchedule(const std::string& key);
+    void resumeSchedule(const std::string& key);
     
     //cancel
-    void UnScheduleByObject(DUObject *pTarget);
+    void unScheduleByObject(DUObject *pTarget);
     
-    void UnScheduleSeletorByKey(void *pTarget, const std::string& key);
+    void unScheduleSeletorByKey(void *pTarget, const std::string& key);
     
-    void UnScheduleSeletorByKey(const std::string& key);
+    void unScheduleSeletorByKey(const std::string& key);
     
-    void UnScheduleSeletorByObject(void *pTarget);
+    void unScheduleSeletorByObject(void *pTarget);
     
-    void UnScheduleAll();
+    void unScheduleAll();
 };
 
 

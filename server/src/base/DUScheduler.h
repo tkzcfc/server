@@ -30,53 +30,53 @@ public:
     
     ~DUScheduler();
     
-    void Update(float delay);
+    void update(float delay);
     
 public:
     
     //add
-    void Schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool paused = false, bool infinite = false);
+    void schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool paused = false, bool infinite = false);
     
-    void Schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, bool bPaused = false);
+    void schedule(DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, bool bPaused = false);
     
-    void ScheduleSelector(const duSchedulerFunc& callback, void *target, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite = false);
+    void scheduleSelector(const duSchedulerFunc& callback, void *target, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite = false);
     
-    void ScheduleSelector(const duSchedulerFunc& callback, void *target, float interval, bool paused, const std::string& key);
+    void scheduleSelector(const duSchedulerFunc& callback, void *target, float interval, bool paused, const std::string& key);
     
-    void ScheduleSelector(const duSchedulerFunc& callback, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite = false);
+    void scheduleSelector(const duSchedulerFunc& callback, float interval, unsigned int repeat, float delay, bool paused, const std::string& key, bool infinite = false);
     
-    void ScheduleSelector(const duSchedulerFunc& callback, float interval, bool paused, const std::string& key);
+    void scheduleSelector(const duSchedulerFunc& callback, float interval, bool paused, const std::string& key);
     
     //pause
-    void PauseSchedule(DUObject* pTarget);
+    void pauseSchedule(DUObject* pTarget);
     
-    void PauseSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector);
+    void pauseSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector);
     
-    void PauseSchedule(void *pTarget, const std::string& key);
+    void pauseSchedule(void *pTarget, const std::string& key);
     
-    void PauseSchedule(const std::string& key);
+    void pauseSchedule(const std::string& key);
     
     //resume
-    void ResumeSchedule(DUObject* pTarget);
+    void resumeSchedule(DUObject* pTarget);
     
-    void ResumeSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector);
+    void resumeSchedule(DUObject *pTarget, DUScheduler_SEL pfnSelector);
     
-    void ResumeSchedule(void *pTarget, const std::string& key);
+    void resumeSchedule(void *pTarget, const std::string& key);
     
-    void ResumeSchedule(const std::string& key);
+    void resumeSchedule(const std::string& key);
     
     //cancel
-    void UnScheduleBySelector(DUScheduler_SEL pfnSelector, DUObject *pTarget);
+    void unScheduleBySelector(DUScheduler_SEL pfnSelector, DUObject *pTarget);
     
-    void UnScheduleByObject(DUObject *pTarget);
+    void unScheduleByObject(DUObject *pTarget);
     
-    void UnScheduleSeletorByKey(void *pTarget, const std::string& key);
+    void unScheduleSeletorByKey(void *pTarget, const std::string& key);
     
-    void UnScheduleSeletorByKey(const std::string& key);
+    void unScheduleSeletorByKey(const std::string& key);
     
-    void UnScheduleSeletorByObject(void *pTarget);
+    void unScheduleSeletorByObject(void *pTarget);
     
-    void UnScheduleAll();
+    void unScheduleAll();
     
 protected:
     
@@ -84,14 +84,14 @@ protected:
     
     SchedulerTimerPtr findSchedulerTimer(HashSchedulerUpdateEntry* hashMap, DUObject *pTarget, SchedulerTimerPtr timer);
     
-    void ClearOperationEntry();
+    void clearOperationEntry();
     
-    void RemoveEntryFormHash(HashSchedulerUpdateEntry* entry);
+    void removeEntryFormHash(HashSchedulerUpdateEntry* entry);
     
 protected:
     
-    struct HashSchedulerUpdateEntry* m_CurrentRunEntry;
-    struct HashSchedulerUpdateEntry* m_OperationEntry;
+    struct HashSchedulerUpdateEntry* m_currentRunEntry;
+    struct HashSchedulerUpdateEntry* m_operationEntry;
     
     std::mutex m_Mutex;
 };

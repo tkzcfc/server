@@ -239,10 +239,11 @@
     <ClCompile Include="..\external\tolua\tolua_map.c" />
     <ClCompile Include="..\external\tolua\tolua_push.c" />
     <ClCompile Include="..\external\tolua\tolua_to.c" />
-    <ClCompile Include="server.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\base\DUObject.cpp" />
     <ClCompile Include="src\base\DUScheduler.cpp" />
     <ClCompile Include="src\base\DUSchedulerTimer.cpp" />
+    <ClCompile Include="src\DUGame.cpp" />
     <ClCompile Include="src\lua-modules\LuaFunction.cpp" />
     <ClCompile Include="src\lua-modules\lua_dubase.cpp" />
     <ClCompile Include="src\lua-modules\lua_modules.cpp" />
@@ -327,6 +328,7 @@
     <ClInclude Include="src\base\DUSchedulerTimer.h" />
     <ClInclude Include="src\base\DUSmartPtr.h" />
     <ClInclude Include="src\base\uthash.h" />
+    <ClInclude Include="src\DUGame.h" />
     <ClInclude Include="src\lua-modules\LuaFunction.hpp" />
     <ClInclude Include="src\lua-modules\lua_dubase.h" />
     <ClInclude Include="src\lua-modules\lua_modules.h" />

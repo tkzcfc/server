@@ -1,7 +1,7 @@
 
 function sendStrToClient(client, msgstr)
-	local m = { content = msgstr}
-	sendMsgToGame(client, "net.speak", m)
+    local m = { content = msgstr}
+    return sendMsgToGame(client, "net.speak", m)
 end
 
 function sendMsgToGame(client, msgKey, msg)
@@ -9,16 +9,10 @@ function sendMsgToGame(client, msgKey, msg)
 	local baseMsg = { msgName = msgKey }
     baseMsg.msgData = protobuf.encode(msgKey, msg)
     local data = protobuf.encode("__msg_base_", baseMsg)
-
-    if string.len(data) <= 0 then
-        print("XXXXXX")
-    end
-
-    client:send(data, string.len(data))
+    return data
 end
 
 function recvMsg(msgdata)
-    print(msgdata)
     local baseMsg = protobuf.decode("__msg_base_" , msgdata)
     local msg = protobuf.decode(baseMsg.msgName, baseMsg.msgData)
     return msg.content
@@ -26,19 +20,15 @@ end
 
 
 
-
-
 local function main()
 	require("lua_code.utils.functions")
 	require("lua_code.net.registerMsg")
-    --require("lua_code.test")
-    --require("lua_code.fstest")
 
     local clients = {}
     local sendMsg = ""
 
     local server = DUServer:new()
-    server:startServer("0.0.0.0", 1234)
+    --server:startServer("0.0.0.0", 1234)
     server:setCallFunc(function(msgtype, client, msgdata)
     	if msgtype == "recv" then
 			local s = client:getIp()..": "..recvMsg(msgdata)

@@ -5,12 +5,11 @@ DUServer::DUServer()
 	m_luaHandleInvalid = false;
 	m_server = new TCPServer();
 
-	DUScheduler::GetInstance()->Schedule(scheduler_selector(DUServer::update), this, 1 / 40.0f);
+	DUScheduler::GetInstance()->schedule(scheduler_selector(DUServer::update), this, 1 / 40.0f);
 }
 
 DUServer::~DUServer()
 {
-	DUScheduler::GetInstance()->UnScheduleByObject(this);
 	delete m_server;
 }
 

@@ -63,7 +63,7 @@ class TimerTargetSelector : public SchedulerTimer
 public:
     TimerTargetSelector();
     
-    void Init(DUScheduler* scheduler, DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool infinite, bool bPaused);
+    void init(DUScheduler* scheduler, DUScheduler_SEL pfnSelector, DUObject *pTarget, float fInterval, unsigned int repeat, float delay, bool infinite, bool bPaused);
     
     virtual void trigger(float dt);
     
@@ -86,7 +86,7 @@ class TimerTargetCallback : public SchedulerTimer
 public:
     TimerTargetCallback();
     
-    void Init(DUScheduler* scheduler, duSchedulerFunc callback, void *pTarget, const std::string key, float fInterval, unsigned int repeat, float delay, bool infinite, bool bPaused);
+    void init(DUScheduler* scheduler, duSchedulerFunc callback, void *pTarget, const std::string key, float fInterval, unsigned int repeat, float delay, bool infinite, bool bPaused);
     
     virtual void trigger(float dt);
     

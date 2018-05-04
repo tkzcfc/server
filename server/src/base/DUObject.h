@@ -31,14 +31,14 @@ public:
     
     ~DUObject();
     
-    virtual DUObject* Retain();
+    virtual DUObject* retain();
     
-    virtual void Release();
+    virtual void release();
     
-    void PrintCount();
+    void printCount();
     
 protected:
-    unsigned int m_Count;
+    unsigned int m_count;
 };
 
 #endif /* DUObject_hpp */
