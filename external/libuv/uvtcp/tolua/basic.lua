@@ -1,4 +1,4 @@
-﻿-- usage: (use instead of ant)
+-- usage: (use instead of ant)
 -- tolua++ "-L" "basic.lua" "-o" "../../scripting/lua/cocos2dx_support/LuaCocos2d.cpp" "Cocos2d.pkg"
 
 _is_functions = _is_functions or {}

@@ -1,7 +1,7 @@
 
 function sendStrToClient(client, msgstr)
     local m = { content = msgstr}
-    return sendMsgToGame(client, "net.speak", m)
+    sendMsgToGame(client, "net.speak", m)
 end
 
 function sendMsgToGame(client, msgKey, msg)
@@ -9,11 +9,21 @@ function sendMsgToGame(client, msgKey, msg)
 	local baseMsg = { msgName = msgKey }
     baseMsg.msgData = protobuf.encode(msgKey, msg)
     local data = protobuf.encode("__msg_base_", baseMsg)
-    return data
+    client:send(data, string.len(data))
 end
 
 function recvMsg(msgdata)
     local baseMsg = protobuf.decode("__msg_base_" , msgdata)
+
+    if type(baseMsg) ~= "table" 
+    or baseMsg.msgName == nil 
+    or baseMsg.msgData == nil
+    or baseMsg.msgName == "" 
+    or baseMsg.msgData == "" then
+        print("net : data is wrongful!!!")
+        return "data is wrongful!!!"
+    end 
+
     local msg = protobuf.decode(baseMsg.msgName, baseMsg.msgData)
     return msg.content
 end
@@ -28,7 +38,7 @@ local function main()
     local sendMsg = ""
 
     local server = DUServer:new()
-    --server:startServer("0.0.0.0", 1234)
+    server:startServer("0.0.0.0", 1234)
     server:setCallFunc(function(msgtype, client, msgdata)
     	if msgtype == "recv" then
 			local s = client:getIp()..": "..recvMsg(msgdata)
@@ -38,20 +48,15 @@ local function main()
 
     	elseif msgtype == "connect" then
 
-    		local s = client:getIp().."connect"
-
-
-
-    		table.insert(clients, client)
-
-            sendStrToClient(client, "funk")
-
+    		local s = client:getIp().." connect"
+            print(s)
             for k,v in pairs(clients) do
                 sendStrToClient(v, s)
             end
-    	elseif msgtype == "disconnect" then
 
-    		print(client:getIp().."disconnect")
+    		table.insert(clients, client)
+
+    	elseif msgtype == "disconnect" then
 
     		for k,v in pairs(clients) do
     			if v == client then
@@ -59,7 +64,8 @@ local function main()
     			end
     		end
 
-			local s = client:getIp().."disconnect"
+			local s = client:getIp().." disconnect"
+            print(s)
     		for k,v in pairs(clients) do
     			sendStrToClient(v, s)
     		end
