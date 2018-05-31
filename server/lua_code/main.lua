@@ -1,38 +1,16 @@
+_MyG = {}
 
-function sendStrToClient(client, msgstr)
-    local m = { content = msgstr}
-    sendMsgToGame(client, "net.speak", m)
-end
+require("lua_code.utils.functions")
 
-function sendMsgToGame(client, msgKey, msg)
-	
-	local baseMsg = { msgName = msgKey }
-    baseMsg.msgData = protobuf.encode(msgKey, msg)
-    local data = protobuf.encode("__msg_base_", baseMsg)
-    client:send(data, string.len(data))
-end
-
-function recvMsg(msgdata)
-    local baseMsg = protobuf.decode("__msg_base_" , msgdata)
-
-    if type(baseMsg) ~= "table" 
-    or baseMsg.msgName == nil 
-    or baseMsg.msgData == nil
-    or baseMsg.msgName == "" 
-    or baseMsg.msgData == "" then
-        print("net : data is wrongful!!!")
-        return "data is wrongful!!!"
-    end 
-
-    local msg = protobuf.decode(baseMsg.msgName, baseMsg.msgData)
-    return msg.content
-end
-
-
+OPEN_DEBUG = 1
 
 local function main()
-	require("lua_code.utils.functions")
-	require("lua_code.net.registerMsg")
+	json = require("lua_code.utils.json")
+    require("lua_code.utils.tools")
+    require("lua_code.net.registerMsg")
+
+    _MyG.NetMsgDispatcher = require("lua_code.utils.dispatcher"):new()
+    _MyG.PlayerManager = require("lua_code.players.playerManager"):new()
 
     local clients = {}
     local sendMsg = ""
@@ -41,40 +19,16 @@ local function main()
     server:startServer("0.0.0.0", 1234)
     server:setCallFunc(function(msgtype, client, msgdata)
     	if msgtype == "recv" then
-			local s = client:getIp()..": "..recvMsg(msgdata)
-    		for k,v in pairs(clients) do
-    			sendStrToClient(v, s)
-    		end
-
+            local msgName, msgTab = recvMsg(msgdata)
+            _MyG.NetMsgDispatcher:call(msgName, client, msgTab)
     	elseif msgtype == "connect" then
-
-    		local s = client:getIp().." connect"
-            print(s)
-            for k,v in pairs(clients) do
-                sendStrToClient(v, s)
-            end
-
-    		table.insert(clients, client)
-
+            _MyG.PlayerManager:connectToServer(client)
     	elseif msgtype == "disconnect" then
-
-    		for k,v in pairs(clients) do
-    			if v == client then
-    				table.remove(clients, k)
-    			end
-    		end
-
-			local s = client:getIp().." disconnect"
-            print(s)
-    		for k,v in pairs(clients) do
-    			sendStrToClient(v, s)
-    		end
-
+            _MyG.PlayerManager:disconnectToServer(client)
     	elseif msgtype == "loopexit" then
     		print("loopexit")
     	end
     end)
-
 end
 
 

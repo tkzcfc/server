@@ -1,8 +1,0 @@
-syntax = "proto2";
-
-package net;
-
-message speak
-{
-	required string content = 1;
-}

@@ -30,6 +30,7 @@ void main()
 	auto instance = DUGame::getInstance();
 	instance->setInterval(1 / 40.0f);
 	instance->run();
+
 	DUGame::destroy();
 
 	lua_close(L);
